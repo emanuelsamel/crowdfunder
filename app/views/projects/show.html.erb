@@ -27,3 +27,10 @@
 <% end %>
 
 <%= link_to "Add new reward", new_project_reward_path(@project) %>
+
+<% @pledges.each do |p| %>
+<ul>
+  <li><%= p.user_id %></li>
+  <li><%= p.dollar_amount %></li>
+</ul>
+<%end%>

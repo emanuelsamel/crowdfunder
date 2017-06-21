@@ -3,12 +3,13 @@ class Pledge < ApplicationRecord
   belongs_to :project
 
   validates :dollar_amount, presence: true
+
   validate :owner_cannot_back_own_project
 
-  def owner_cannot_back_own_project
-    if self.user == project.owner
-      errors.add(:user, 'Error')
-    end
-  end
+   def owner_cannot_back_own_project
+      if user_id == project.owner_id
+        errors.add(:user, "cannot pledge as owner.")
+      end
 
+  end
 end
