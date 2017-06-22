@@ -5,4 +5,11 @@ class Project < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
 
   validates :title, :description, :goal, :start_date, :end_date, presence: true
+
+  def time_left
+    sec = (end_date - Time.current)
+    days = (sec / 86400)
+    return days.round(2)
+  end
+
 end
