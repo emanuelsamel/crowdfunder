@@ -15,11 +15,14 @@
 <% end %>
 <p>Total pledges so far: $<%= total_pledges.sum %></p>
 
-<p>Time left to pledge: <%= @project.time_left %> days
-
-<%= form_for [@project, Pledge.new] do |f| %>
-  <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01 %>
-  <%= f.submit "Pledge" %>
+<% if @project.time_left < 0 %>
+  <h1>This project ended <%= "#{time_ago_in_words(@project.end_date)}" %> ago</h1>
+<% else %>
+  <h1>Time left to pledge: <%= "#{time_ago_in_words(@project.end_date)} #{( @project.end_date > Time.now.utc ) ? '' : ''}" %></h1>
+  <%= form_for [@project, Pledge.new] do |f| %>
+    <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01 %>
+    <%= f.submit "Pledge" %>
+  <% end %>
 <% end %>
 
 <h2>Rewards</h2>
