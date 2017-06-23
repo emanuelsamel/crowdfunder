@@ -19,6 +19,8 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.image = project_params[:image]
+    @project.owner = current_user
 
     if @project.save
       redirect_to projects_url
