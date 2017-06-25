@@ -1,7 +1,5 @@
 class ProgressesController < ApplicationController
 
-
-
     before_action :load_project
 
     def new

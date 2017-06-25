@@ -28,13 +28,16 @@
 <% end %>
 
 <h2>Progress</h2>
+<p><%= link_to "Add Progress", new_project_progress_path(@project)  %></p>
 <% @project.progresses.each do |progress| %>
 <p><%= progress.progress_title %></p>
 <p><%= progress.progress_description %></p>
+<p> <%= link_to "Edit Progress", edit_project_progress_path(@project)  %> </p>
+<!-- <p><%=link_to("Delete", projects_url(@project.id), method: :destroy, data: {confirm: "Are you sure you want to delete?"}) %></p> -->
 
 <% end %>
 
-<%= link_to "Add Progress", new_project_progress_path(@project)  %>
+
 
 
 <h3>Rewards</h3>
