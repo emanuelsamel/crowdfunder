@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProgressControllerTest < ActionDispatch::IntegrationTest
+class ProgressesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
