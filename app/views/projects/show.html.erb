@@ -2,7 +2,7 @@
 <h2>Project owner: <%= link_to "#{@owner.first_name} #{@owner.last_name}", @owner %></h2>
 
 <% if @project.image.present? %>
-  <%= image_tag @project.image %>
+<%= image_tag @project.image %>
 <% end %>
 
 <p><%= @project.description %></p>
@@ -12,30 +12,45 @@
 
 <% total_pledges = [] %>
 <% @project.pledges.each do |pledge| %>
-  <% total_pledges << pledge.dollar_amount %>
+<% total_pledges << pledge.dollar_amount %>
 <% end %>
+
 <p>Total pledges so far: $<%= total_pledges.sum %></p>
 
 <% if @project.time_left < 0 %>
-  <h1>This project ended <%= "#{time_ago_in_words(@project.end_date)}" %> ago</h1>
+<h1>This project ended <%= "#{time_ago_in_words(@project.end_date)}" %> ago</h1>
 <% else %>
-  <h1>Time left to pledge: <%= "#{time_ago_in_words(@project.end_date)} #{( @project.end_date > Time.now.utc ) ? '' : ''}" %></h1>
-  <%= form_for [@project, Pledge.new] do |f| %>
-    <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01 %>
-    <%= f.submit "Pledge" %>
-  <% end %>
+
+<h1>Time left to pledge: <%= "#{time_ago_in_words(@project.end_date)} #{( @project.end_date > Time.now.utc ) ? '' : ''}" %></h1>
+<%= form_for [@project, Pledge.new] do |f| %>
+<%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01 %>
+<%= f.submit "Pledge" %>
+<% end %>
 <% end %>
 
-<h2>Rewards</h2>
-<% @project.rewards.each do |reward| %>
-  <p><%= number_to_currency(reward.dollar_amount) %></p>
-  <p><%= reward.description %></p>
+<h2>Progress</h2>
+<p><%= link_to "Add Progress", new_project_progress_path(@project)  %></p>
+<% @project.progresses.each do |progress| %>
+<p><%= progress.progress_title %></p>
+<p><%= progress.progress_description %></p>
+<p> <%= link_to "Edit Progress", edit_project_progress_path(@project)  %> </p>
+<!-- <p><%=link_to("Delete", projects_url(@project.id), method: :destroy, data: {confirm: "Are you sure you want to delete?"}) %></p> -->
 
-  <p>
-    <small>
-      <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete' %>
-    </small>
-  </p>
+<% end %>
+
+
+
+
+<h3>Rewards</h3>
+<% @project.rewards.each do |reward| %>
+<p><%= number_to_currency(reward.dollar_amount) %></p>
+<p><%= reward.description %></p>
+
+<p>
+  <small>
+    <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete' %>
+  </small>
+</p>
 <% end %>
 
 <%= link_to "Add new reward", new_project_reward_path(@project) %>

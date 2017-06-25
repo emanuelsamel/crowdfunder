@@ -15,6 +15,7 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     @project.rewards.build
+    @project.progresses.build
   end
 
   def create
@@ -27,6 +28,10 @@ class ProjectsController < ApplicationController
     else
       render :new
     end
+   end
+
+   def destroy
+
    end
 
   private
