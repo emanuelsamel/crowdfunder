@@ -34,6 +34,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'carrierwave', '~> 1.0'
   gem 'pry-rails'
+  gem 'factory_girl_rails'
 end
 
 group :test do
