@@ -30,12 +30,14 @@
   <p><%= "#{time_ago_in_words(@project.end_date)} #{( @project.end_date > Time.now.utc ) ? '' : ''}" %></p>
   <hr>
 </div>
-<div class="pledge-box">
-  <br>
-  <%= form_for [@project, Pledge.new] do |f| %>
-  <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 1.00, placeholder: '$' %>
-  <%= f.submit "Make a Pledge" %>
-  <% end %>
+<% unless current_user == @project.owner %>
+  <div class="pledge-box">
+    <br>
+    <%= form_for [@project, Pledge.new] do |f| %>
+    <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 1.00, placeholder: '$' %>
+    <%= f.submit "Make a Pledge" %>
+    <% end %>
+    <% end %>
   <% end %>
 </div>
 <!-- <h3>Progress</h3>
@@ -46,21 +48,17 @@
 <p> <%= link_to "Edit Progress", edit_project_progress_path(@project)  %> </p> -->
 <!-- <p><%=link_to("Delete", projects_url(@project.id), method: :destroy, data: {confirm: "Are you sure you want to delete?"}) %></p> -->
 <!-- <% end %>
-
 <h3>Rewards</h3>
 <% @project.rewards.each do |reward| %>
 <p><%= number_to_currency(reward.dollar_amount) %></p>
 <p><%= reward.description %></p>
-
 <p>
   <small>
     <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete' %>
   </small>
 </p>
 <% end %>
-
 <%= link_to "Add new reward", new_project_reward_path(@project) %>
-
 <% @pledges.each do |p| %>
 <ul>
   <li><%= p.user_id %></li>
