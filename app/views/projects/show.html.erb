@@ -24,6 +24,8 @@
 <h1>Time left to pledge: <%= "#{time_ago_in_words(@project.end_date)} #{( @project.end_date > Time.now.utc ) ? '' : ''}" %></h1>
 <%= form_for [@project, Pledge.new] do |f| %>
 <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01 %>
+<%= f.label :comment %>
+<%= f.text_area :comment %>
 <%= f.submit "Pledge" %>
 <% end %>
 <% end %>

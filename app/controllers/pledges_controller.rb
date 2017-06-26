@@ -21,6 +21,6 @@ class PledgesController < ApplicationController
   private
 
   def pledge_params
-    params.require(:pledge).permit(:dollar_amount)
+    params.require(:pledge).permit(:dollar_amount, :comment)
   end
 end
