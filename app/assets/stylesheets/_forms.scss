@@ -1,8 +1,10 @@
 input[type=text],
+input[type=number],
 input[type=password],
 input[type=email] {
-  padding: 0.25em 0.5em;
+  padding: 1em;
   border: 1px solid #f0f0f0;
+  font-family: $base-font-family;
 }
 
 input[type=submit] {
@@ -10,7 +12,7 @@ input[type=submit] {
   color: white;
   background-color: #2BDE73;
   border: 0;
-  font-family: $header-font-family;
+  font-family: $base-font-family;
 
   &:hover {
     color: #353535;
