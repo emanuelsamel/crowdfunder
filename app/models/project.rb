@@ -46,7 +46,7 @@ class Project < ActiveRecord::Base
   end
 
   def progress_bar
-    (total_pledges / goal).round(2)
+    (total_pledges / goal).round(2) * 100
   end
 
 end
