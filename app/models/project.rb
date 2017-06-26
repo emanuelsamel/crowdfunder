@@ -37,4 +37,16 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def total_pledges
+    total_pledges = []
+    pledges.each do |pledge|
+      total_pledges << pledge.dollar_amount
+    end
+    return total_pledges.sum
+  end
+
+  def progress_bar
+    (total_pledges / goal).round(2)
+  end
+
 end

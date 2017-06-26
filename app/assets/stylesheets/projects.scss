@@ -4,7 +4,7 @@
 
 .project {
   text-align: center;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   padding: 1rem;
   border: 1px solid #eeeeee;
   border-radius: 3px;
@@ -45,4 +45,8 @@
   clear: both;
   width: 100%;
   font-size: 1.5em;
+}
+
+.project-days-left {
+  font-size: 1em;
 }

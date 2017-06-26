@@ -4,6 +4,7 @@
   <% end %>
   <h1><%= @project.title %></h1>
   <h3>Project owner: <%= link_to "#{@owner.first_name} #{@owner.last_name}", @owner %></h3>
+  <p><%= @project.progress_bar %>% funded</p>
 </article>
 <div class="project-description">
   <h3>About the Project:</h3>
@@ -14,13 +15,13 @@
   <p><%= number_to_currency(@project.goal) %></p>
   <hr>
 
-  <% total_pledges = [] %>
+  <!-- <% total_pledges = [] %>
   <% @project.pledges.each do |pledge| %>
   <% total_pledges << pledge.dollar_amount %>
-  <% end %>
+  <% end %> -->
 
   <h3>Total pledges so far:</h3>
-  <p>$<%= total_pledges.sum %></p>
+  <p>$<%= @project.total_pledges %></p>
   <hr>
   <% if @project.time_left < 0 %>
   <h1>This project ended <%= "#{time_ago_in_words(@project.end_date)}" %> ago</h1>

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :reward do
-    dollar_amount (1..10000).to_a.sample
+    dollar_amount 100
     description 'This is a test'
   end
 end
