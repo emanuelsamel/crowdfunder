@@ -6,12 +6,13 @@ input[type=email] {
 }
 
 input[type=submit] {
-  padding: 0.5em;
+  padding: 1em;
   color: white;
-  background-color: cadetblue;
+  background-color: #2BDE73;
   border: 0;
+  font-family: $header-font-family;
 
   &:hover {
-    background-color: darken(cadetblue, 8%);
+    color: #353535;
   }
 }
