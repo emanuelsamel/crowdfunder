@@ -45,10 +45,11 @@
     <!-- <p> <%= link_to "Edit Progress", edit_project_progress_path(@project)  %> </p>
     <p><%=link_to("Delete", project_progress_url(@project), method: :destroy, data: {confirm: "Are you sure you want to delete?"}) %></p> -->
   <% end %>
-  <% @project.progresses.each do |progress| %>
-    <h4><%= progress.progress_title %></h4>
-    <time><strong><p>Updated <%= time_ago_in_words(progress.created_at) %> ago</p></strong></time>
-    <p class="progress-info"><%= progress.progress_description %></p>
+  <% updates = @project.progresses.reverse %>
+  <% updates.each do |update| %>
+    <h4><%= update.progress_title %></h4>
+    <time><strong><p>Updated <%= time_ago_in_words(update.created_at) %> ago</p></strong></time>
+    <p class="progress-info"><%= update.progress_description %></p>
   <% end %>
 </div>
 
