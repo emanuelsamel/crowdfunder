@@ -1,4 +1,4 @@
-<h1>Add Progress reports for <%= @project.title %> </h1>
+<h2>Add Progress Report for <%= @project.title %> </h2>
 
 <% if @progress.errors.any? %>
   <div id="error_explanation">
@@ -14,13 +14,14 @@
 <%= form_for [@project, @progress] do |f| %>
   <div>
     <%= f.label :progress_title %>
-    <%= f.text_area :progress_title %>
+    <%= f.text_field :progress_title %>
   </div>
-
+  <br>
   <div>
     <%= f.label :progress_description %>
     <%= f.text_area :progress_description %>
   </div>
-
+  <br>
   <%= f.submit %>
+  <br>
 <% end %>
