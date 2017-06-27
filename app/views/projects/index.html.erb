@@ -1,7 +1,6 @@
 <div class="new-project-bar">
   <%= link_to "Start a New Project!", new_project_path %>
 </div>
-
 <% @projects.each do |project| %>
   <article class="project">
     <%= link_to project, class: 'project-link' do %>

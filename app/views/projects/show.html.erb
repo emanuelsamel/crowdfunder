@@ -42,8 +42,6 @@
   <h3>Progress Updates From <%= link_to "#{@owner.first_name} #{@owner.last_name}", @owner %></h3>
   <% if  current_user == @project.owner %>
     <p><%= link_to "Add Progress", new_project_progress_path(@project)  %></p>
-    <!-- <p> <%= link_to "Edit Progress", edit_project_progress_path(@project)  %> </p>
-    <p><%=link_to("Delete", project_progress_url(@project), method: :destroy, data: {confirm: "Are you sure you want to delete?"}) %></p> -->
   <% end %>
   <% updates = @project.progresses.reverse %>
   <% updates.each do |update| %>
@@ -52,21 +50,3 @@
     <p class="progress-info"><%= update.progress_description %></p>
   <% end %>
 </div>
-
-<!-- <h3>Rewards</h3>
-<% @project.rewards.each do |reward| %>
-<p><%= number_to_currency(reward.dollar_amount) %></p>
-<p><%= reward.description %></p>
-<p>
-  <small>
-    <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete' %>
-  </small>
-</p>
-<% end %>
-<%= link_to "Add new reward", new_project_reward_path(@project) %>
-<% @pledges.each do |p| %>
-<ul>
-  <li><%= p.user_id %></li>
-  <li><%= p.dollar_amount %></li>
-</ul>
-<%end%> -->
